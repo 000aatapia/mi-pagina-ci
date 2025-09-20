@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TechPulse — Noticias y recursos de tecnología</title>
+  <style>
+    :root{--bg:#0b1220;--card:#0f1724;--muted:#9fb0c8;--accent:#00d1ff;--accent2:#7c5cff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:linear-gradient(180deg,#061021,#071528);color:#eaf6ff;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:1100px;margin:28px auto;padding:20px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,var(--accent2),var(--accent));display:grid;place-items:center;font-weight:800;letter-spacing:0.6px}
+    h1{margin:0;font-size:1.6rem}
+    .tagline{color:var(--muted);font-size:0.95rem}
+
+    nav{display:flex;gap:12px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.02);color:#fff}
+
+    .hero{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:20px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;box-shadow:0 8px 24px rgba(2,6,23,0.6)}
+
+    .search{display:flex;gap:8px;align-items:center}
+    .search input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+    .btn{background:var(--accent);color:#05202a;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:600}
+
+    /* Tech grid */
+    .tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:14px}
+    .tech{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(124,92,255,0.08),rgba(0,209,255,0.03));display:flex;gap:12px;align-items:center}
+    .chip{width:46px;height:46px;border-radius:10px;display:grid;place-items:center;font-weight:700;background:rgba(0,0,0,0.18)}
+
+    /* Latest posts */
+    .posts{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+    .post{display:flex;gap:14px;align-items:flex-start}
+    .post .meta{color:var(--muted);font-size:0.9rem}
+
+    /* Sidebar */
+    aside .widget{margin-bottom:12px}
+    .small{font-size:0.9rem;color:var(--muted)}
+
+    footer{margin-top:24px;color:var(--muted);text-align:center}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .logo{width:46px;height:46px}
+    }
+
+    /* code block */
+    pre{background:#041016;padding:12px;border-radius:8px;overflow:auto;font-family:monospace;color:#cfeefd}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">TP</div>
+        <div>
+          <h1>TechPulse</h1>
+          <div class="tagline">Noticias, recursos y microtutoriales sobre tecnologías modernas</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#stack">Stack</a>
+        <a href="#tutoriales">Tutoriales</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#newsletter" class="btn">Suscribirse</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <section>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div>
+              <div class="small">Última actualización</div>
+              <h2 style="margin:6px 0 0">Panorama rápido: IA, Web3 y Cloud Native</h2>
+              <p class="small" style="margin-top:8px">Resúmenes breves, herramientas prácticas y enlaces curados para que pases de leer a construir.</p>
+            </div>
+            <div style="min-width:180px">
+              <div class="search">
+                <input id="q" placeholder="Buscar artículos, tecnologías..." />
+                <button class="btn" onclick="buscar()">Buscar</button>
+              </div>
+              <div class="small" style="margin-top:8px">Atajo: escribe y presiona Enter</div>
+            </div>
+          </div>
+
+          <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)">
+
+          <h3 id="stack">Pilas y tendencias</h3>
+          <div class="tech-grid">
+            <div class="tech"><div class="chip">AI</div><div><strong>ModelOps</strong><div class="small">Deployment & monitoring de modelos</div></div></div>
+            <div class="tech"><div class="chip">Web</div><div><strong>React / Svelte</strong><div class="small">Interfaz reactivas y rendimiento</div></div></div>
+            <div class="tech"><div class="chip">Cloud</div><div><strong>Kubernetes</strong><div class="small">Orquestación y Cloud Native</div></div></div>
+            <div class="tech"><div class="chip">Data</div><div><strong>DB: Postgres</strong><div class="small">Relacional con extensiones modernas</div></div></div>
+            <div class="tech"><div class="chip">Sec</div><div><strong>Zero Trust</strong><div class="small">Seguridad desde la arquitectura</div></div></div>
+            <div class="tech"><div class="chip">Infra</div><div><strong>IaC</strong><div class="small">Terraform & Pulumi</div></div></div>
+          </div>
+
+          <h3 style="margin-top:14px">Últimos artículos</h3>
+          <div class="posts" id="posts">
+            <article class="post card">
+              <div style="flex:1">
+                <h4 style="margin:0 0 6px">Cómo poner modelos LLM en producción (mini guía)</h4>
+                <div class="meta">8 Sept, 2025 • 6 min lectura</div>
+                <p class="small" style="margin-top:8px">Pasos prácticos: wrapping, contenedores, endpoints y observabilidad mínima para empezar rápido.</p>
+              </div>
+            </article>
+
+            <article class="post card">
+              <div style="flex:1">
+                <h4 style="margin:0 0 6px">Microfrontends: ¿Cuándo sí y cuándo no?</h4>
+                <div class="meta">2 Sept, 2025 • 4 min lectura</div>
+                <p class="small" style="margin-top:8px">Casos de uso, trade-offs y una checklist para decidir si aplicarlos en tu organización.</p>
+              </div>
+            </article>
+
+            <article class="post card">
+              <div style="flex:1">
+                <h4 style="margin:0 0 6px">K8s: buenas prácticas para clusters de dev</h4>
+                <div class="meta">28 Ago, 2025 • 5 min lectura</div>
+                <p class="small" style="margin-top:8px">Estrategias de nombres, namespaces, recursos y testing local con KinD o Minikube.</p>
+              </div>
+            </article>
+
+          </div>
+
+          <h3 style="margin-top:14px">Snippet rápido</h3>
+          <pre><code># Deploy rápido con Docker
+docker build -t mi-app:latest .
+docker run -p 8080:80 mi-app:latest
+
+# Kubernetes: deployment mínimo
+kubectl create deployment mi-app --image=mi-app:latest
+kubectl expose deployment mi-app --type=LoadBalancer --port=80
+</code></pre>
+
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Tutoriales recientes</h3>
+          <ul style="padding-left:18px;margin:8px 0 0;color:var(--muted)">
+            <li>Desplegando una API con FastAPI y Docker</li>
+            <li>Pipeline CI/CD con GitHub Actions</li>
+            <li>Introducción a Prometheus y Grafana</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <aside style="width:340px">
+        <div class="card widget">
+          <h4>Suscríbete al boletín</h4>
+          <p class="small">Recibe un resumen semanal con lo más útil (sin spam).</p>
+          <form onsubmit="suscribir(event)">
+            <input name="email" type="email" placeholder="tu@correo.com" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit">
+            <div style="margin-top:8px;display:flex;gap:8px"><button class="btn" type="submit">Suscribir</button><div id="res" class="small"> </div></div>
+          </form>
+        </div>
+
+        <div class="card widget">
+          <h4>Recursos</h4>
+          <ul class="small" style="margin:8px 0 0;padding-left:18px">
+            <li><strong>Awesome-Dev</strong> — Curación semanal</li>
+            <li><strong>Deploy Recipes</strong> — Snippets listos</li>
+            <li><strong>Security Cheatsheet</strong> — Lista de verificación</li>
+          </ul>
+        </div>
+
+        <div class="card widget">
+          <h4>Atajos</h4>
+          <div class="small">Presiona <kbd>Ctrl</kbd> + <kbd>B</kbd> para foco en búsqueda.</div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer>
+      <div class="small">© 2025 TechPulse • Hecho para desarrolladores curiosos</div>
+    </footer>
+  </div>
+
+  <script>
+    // Búsqueda demo
+    document.getElementById('q').addEventListener('keydown', function(e){ if(e.key==='Enter'){ buscar() } })
+    function buscar(){
+      const q = document.getElementById('q').value.trim()
+      if(!q) return alert('Escribe algo para buscar')
+      // demo: filtrar posts por título
+      const posts = document.querySelectorAll('#posts .post')
+      posts.forEach(p=>{
+        const title = p.querySelector('h4').innerText.toLowerCase()
+        p.style.display = title.includes(q.toLowerCase()) ? 'flex' : 'none'
+      })
+    }
+
+    // Suscribir (simulado)
+    function suscribir(e){
+      e.preventDefault(); const res = document.getElementById('res'); res.textContent='...';
+      setTimeout(()=>{res.textContent='¡Listo! (simulado)'; e.target.reset()},600)
+    }
+
+    // Atajo de teclado
+    window.addEventListener('keydown', (ev)=>{
+      if(ev.ctrlKey && ev.key.toLowerCase()==='b'){
+        ev.preventDefault(); document.getElementById('q').focus()
+      }
+    })
+  </script>
+</body>
+</html>
