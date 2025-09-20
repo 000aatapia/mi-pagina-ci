@@ -2,17 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
-                script {
-                    docker.build("mi-pagina:latest")
-                }
+                echo 'Construyendo imagen Docker...'
+                sh 'docker build -t mi-pagina:latest .'
             }
         }
-        stage('Run Container') {
+        stage('Deploy') {
             steps {
-                sh 'docker rm -f mi-pagina || true'
-                sh 'docker run -d -p 8080:80 --name mi-pagina mi-pagina:latest'
+                echo 'Desplegando contenedor...'
+                // primero paramos si existe
+                sh 'docker stop mi-pagina || true && docker rm mi-pagina || true'
+                // luego levantamos en 8081
+                sh 'docker run -d -p 8081:80 --name mi-pagina mi-pagina:latest'
             }
         }
     }
